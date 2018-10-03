@@ -13,17 +13,16 @@
 # and
 #   about_triangle_project_2.rb
 #
-def calculate_if_longest_side_biggar_than_sum_of_other_sides?(sides)
-  longest_side = sides.max
-  sides.delete_at(sides.index(longest_side))
-  sides[0] + sides[1] <= longest_side
+def is_longest_side_biggar_than_sum_of_other_sides?(sides)
+  sorted_sides = sides.sort
+  sorted_sides[0] + sorted_sides[1] <= sorted_sides[2]
 end
 
 
 def triangle(a, b, c)
   if a < 1 || b < 1 || c < 1
     raise TriangleError.new("Plebs")
-  elsif calculate_if_longest_side_biggar_than_sum_of_other_sides?([a, b, c])
+  elsif is_longest_side_biggar_than_sum_of_other_sides?([a, b, c])
     raise TriangleError.new("More plebs")
   elsif a == b && b == c
     :equilateral
