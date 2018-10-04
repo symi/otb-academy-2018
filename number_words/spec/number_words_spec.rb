@@ -120,5 +120,24 @@ RSpec.describe "number_words" do
     it "returns 'one hundred' for 100" do
       expect(number_words 100).to eq("one hundred")
     end
+
+    it "returns 'one hundred and one' for 101" do
+      expect(number_words 101).to eq("one hundred and one")
+    end
+
+    it "returns 'one hundred and ten' for 110" do
+      expect(number_words 110).to eq("one hundred and ten")
+    end
+
+    it "returns 120s" do
+      expect(number_words 120).to eq("one hundred and twenty")
+      expect(number_words 121).to eq("one hundred and twenty one")
+    end
+
+    it "returns for 130-199" do
+      expect(number_words 134).to eq("one hundred and thirty four")
+      expect(number_words 156).to eq("one hundred and fifty six")
+      expect(number_words 198).to eq("one hundred and ninety eight")
+    end
   end
 end

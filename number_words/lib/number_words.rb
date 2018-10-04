@@ -33,7 +33,11 @@ def number_words(number)
   string = ""
 
   if number > 99
-    string += "#{number_words(number / 100)} #{tokens[number]}"
+    string += "#{number_words(number / 100)} #{tokens[(number / 100) * 100]}"
+
+    if number % 100 != 0
+      string += " and #{number_words(number % 100)}"
+    end
   elsif number > 19
     string += "#{tokens[(number / 10) * 10]}"
 
