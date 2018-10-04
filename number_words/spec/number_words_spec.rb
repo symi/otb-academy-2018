@@ -218,5 +218,9 @@ RSpec.describe "number_words" do
     it "returns 'forty three million, one hundred and twelve thousand, six hundred and three' for 43112603" do
       expect(number_words 43112603).to eq("forty three million, one hundred and twelve thousand, six hundred and three")
     end
+
+    it "returns 'four hundred and thirty million, one hundred and twelve thousand, six hundred and three' for 43112603" do
+      expect(number_words 430112603).to eq("four hundred and thirty million, one hundred and twelve thousand, six hundred and three")
+    end
   end
 end
