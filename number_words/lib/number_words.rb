@@ -29,13 +29,26 @@ def number_words(number)
     90 => "ninety",
     100 => "hundred",
     1000 => "thousand",
+    1000000 => "million",
     :and => "and",
     :comma => ",",
   }
 
   string = ""
 
-  if number >= 1000
+  if number >= 1000000
+    string += "#{number_words(number / 1000000)} #{tokens[1000000]}"
+
+    if number % 1000000 != 0
+      if (number / 100000) % 10 != 0
+        string += "#{tokens[:comma]}"
+      else
+        string += " #{tokens[:and]}"
+      end
+
+      string += " #{number_words(number % 1000000)}"
+    end
+  elsif number >= 1000
     string += "#{number_words(number / 1000)} #{tokens[1000]}"
 
     if number % 1000 != 0
