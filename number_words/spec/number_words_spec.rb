@@ -170,5 +170,43 @@ RSpec.describe "number_words" do
     it "returns 'one thousand, one hundred' for 1100" do
       expect(number_words 1100).to eq("one thousand, one hundred")
     end
+
+    it "returns 'one thousand, one hundred and one' for 1101" do
+      expect(number_words 1101).to eq("one thousand, one hundred and one")
+    end
+
+    it "returns for numbers up to 9999" do
+      expect(number_words 2000).to eq("two thousand")
+      expect(number_words 2085).to eq("two thousand and eighty five")
+      expect(number_words 9999).to eq("nine thousand, nine hundred and ninety nine")
+    end
+  end
+
+  context "for tens of thousands" do
+    it "returns 'ten thousand' for 10000" do
+      expect(number_words 10000).to eq("ten thousand")
+    end
+
+    it "returns 'twelve thousand and nine' for 12009" do
+      expect(number_words 12009).to eq("twelve thousand and nine")
+    end
+
+    it "returns 'twenty one thousand' for 21000" do
+      expect(number_words 21000).to eq("twenty one thousand")
+    end
+
+    it "returns 'twelve thousand, six hundred and nine' for 12609" do
+      expect(number_words 12609).to eq("twelve thousand, six hundred and nine")
+    end
+  end
+
+  context "for hundreds of thousands" do
+    it "returns 'one hundred thousand' for 100000" do
+      expect(number_words 100000).to eq("one hundred thousand")
+    end
+
+    it "returns 'five hundred and twelve thousand, six hundred and seven' for 512607" do
+      expect(number_words 512607).to eq("five hundred and twelve thousand, six hundred and seven")
+    end
   end
 end
