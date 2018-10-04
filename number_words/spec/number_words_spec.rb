@@ -33,4 +33,25 @@ RSpec.describe "number_words" do
       expect(number_words 9).to eq("nine")
     end
   end
+
+  context "for units 10-19" do
+    it "returns 'ten' for 10" do
+      expect(number_words 10).to eq("ten")
+    end
+
+    it "returns 'eleven' for 11" do
+      expect(number_words 11).to eq("eleven")
+    end
+
+    it "returns strings for number 12-19" do
+      expect(number_words 12).to eq("twelve")
+      expect(number_words 13).to eq("thirteen")
+      expect(number_words 14).to eq("fourteen")
+      expect(number_words 15).to eq("fifteen")
+      expect(number_words 16).to eq("sixteen")
+      expect(number_words 17).to eq("seventeen")
+      expect(number_words 18).to eq("eighteen")
+      expect(number_words 19).to eq("nineteen")
+    end
+  end
 end
