@@ -78,4 +78,41 @@ RSpec.describe "number_words" do
       expect(number_words 29).to eq("twenty nine")
     end
   end
+
+  context "for 30-99" do
+    it "returns 30s" do
+      expect(number_words 30).to eq("thirty")
+      expect(number_words 33).to eq("thirty three")
+    end
+
+    it "returns 40s" do
+      expect(number_words 40).to eq("forty")
+      expect(number_words 44).to eq("forty four")
+    end
+
+    it "returns 50s" do
+      expect(number_words 50).to eq("fifty")
+      expect(number_words 55).to eq("fifty five")
+    end
+
+    it "returns 60s" do
+      expect(number_words 60).to eq("sixty")
+      expect(number_words 66).to eq("sixty six")
+    end
+
+    it "returns 70s" do
+      expect(number_words 70).to eq("seventy")
+      expect(number_words 77).to eq("seventy seven")
+    end
+
+    it "returns 80s" do
+      expect(number_words 80).to eq("eighty")
+      expect(number_words 88).to eq("eighty eight")
+    end
+
+    it "returns 90s" do
+      expect(number_words 90).to eq("ninety")
+      expect(number_words 99).to eq("ninety nine")
+    end
+  end
 end
