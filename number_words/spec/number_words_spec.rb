@@ -14,7 +14,23 @@ require 'number_words'
 #              six hundred and three
 
 RSpec.describe "number_words" do
-  it "returns 'one' for 1" do
-    expect(number_words 1).to eq("one")
+  context "for single units" do
+    it "returns 'one' for 1" do
+      expect(number_words 1).to eq("one")
+    end
+
+    it "returns 'two' for 2" do
+      expect(number_words 2).to eq("two")
+    end
+
+    it "returns strings for numbers 3-9" do
+      expect(number_words 3).to eq("three")
+      expect(number_words 4).to eq("four")
+      expect(number_words 5).to eq("five")
+      expect(number_words 6).to eq("six")
+      expect(number_words 7).to eq("seven")
+      expect(number_words 8).to eq("eight")
+      expect(number_words 9).to eq("nine")
+    end
   end
 end
