@@ -1,12 +1,16 @@
 # Implement a DiceSet Class here:
-#
-# class DiceSet
-#   code ...
-# end
-#
+
+class DiceSet
+  attr_reader :values
+
+  def roll(turns)
+    @values = Array.new(turns) { rand(6) + 1 }
+  end
+end
+
 
 RSpec.describe "dice set" do
-  it "can create a new sice set" do
+  it "can create a new dice set" do
     dice = DiceSet.new
     expect( dice ).not_to be_nil
   end
