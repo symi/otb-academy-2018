@@ -115,4 +115,10 @@ RSpec.describe "number_words" do
       expect(number_words 99).to eq("ninety nine")
     end
   end
+
+  context "for 100-199" do
+    it "returns 'one hundred' for 100" do
+      expect(number_words 100).to eq("one hundred")
+    end
+  end
 end

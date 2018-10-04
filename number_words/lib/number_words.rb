@@ -1,5 +1,5 @@
 def number_words(number)
-  words = {
+  tokens = {
     1 => "one",
     2 => "two",
     3 => "three",
@@ -27,18 +27,21 @@ def number_words(number)
     70 => "seventy",
     80 => "eighty",
     90 => "ninety",
+    100 => "hundred"
   }
 
   string = ""
 
-  if number > 19
-    string += "#{words[(number / 10) * 10]}"
+  if number > 99
+    string += "#{number_words(number / 100)} #{tokens[number]}"
+  elsif number > 19
+    string += "#{tokens[(number / 10) * 10]}"
 
     if number % 10 != 0
       string += " #{number_words(number % 10)}"
     end
   else
-    string += words[number]
+    string += tokens[number]
   end
 
   string
