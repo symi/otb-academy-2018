@@ -34,7 +34,7 @@ RSpec.describe "number_words" do
     end
   end
 
-  context "for units 10-19" do
+  context "for 10-19" do
     it "returns 'ten' for 10" do
       expect(number_words 10).to eq("ten")
     end
@@ -43,7 +43,7 @@ RSpec.describe "number_words" do
       expect(number_words 11).to eq("eleven")
     end
 
-    it "returns strings for number 12-19" do
+    it "returns strings for numbers 12-19" do
       expect(number_words 12).to eq("twelve")
       expect(number_words 13).to eq("thirteen")
       expect(number_words 14).to eq("fourteen")
@@ -52,6 +52,30 @@ RSpec.describe "number_words" do
       expect(number_words 17).to eq("seventeen")
       expect(number_words 18).to eq("eighteen")
       expect(number_words 19).to eq("nineteen")
+    end
+  end
+
+  context "for 20s" do
+    it "returns 'twenty' for 20" do
+      expect(number_words 20).to eq("twenty")
+    end
+
+    it "returns 'twenty one' for 21" do
+      expect(number_words 21).to eq("twenty one")
+    end
+
+    it "returns 'twenty two' for 22" do
+      expect(number_words 22).to eq("twenty two")
+    end
+
+    it "returns strings for numbers 23-29" do
+      expect(number_words 23).to eq("twenty three")
+      expect(number_words 24).to eq("twenty four")
+      expect(number_words 25).to eq("twenty five")
+      expect(number_words 26).to eq("twenty six")
+      expect(number_words 27).to eq("twenty seven")
+      expect(number_words 28).to eq("twenty eight")
+      expect(number_words 29).to eq("twenty nine")
     end
   end
 end

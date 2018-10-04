@@ -1,5 +1,5 @@
 def number_words(number)
-  special_cases = {
+  words = {
     1 => "one",
     2 => "two",
     3 => "three",
@@ -19,7 +19,20 @@ def number_words(number)
     17 => "seventeen",
     18 => "eighteen",
     19 => "nineteen",
+    20 => "twenty",
   }
 
-  special_cases[number]
+  string = ""
+
+  if number > 19
+    string += "#{words[(number / 10) * 10]}"
+
+    if number % 10 != 0
+      string += " #{words[number % 10]}"
+    end
+  else
+    string += words[number]
+  end
+
+  string
 end
