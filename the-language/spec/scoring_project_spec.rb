@@ -28,7 +28,35 @@
 # Your goal is to write the score method.
 
 def score(dice)
-  # You need to write this method
+  current_score = 0
+
+  (1..6).each do | possible_die |
+    if dice.count { | die | die == possible_die } >= 3
+      if possible_die == 1
+        current_score += 1000
+      else
+        current_score += possible_die * 100
+      end
+
+      delete_count = 0
+      dice.delete_if do | die |
+        if die == possible_die && delete_count < 3
+          delete_count += 1
+          true
+        end
+      end
+    end
+  end
+
+  dice.each do | die |
+    if die == 5
+      current_score += 50
+    elsif die == 1
+      current_score += 100
+    end
+  end
+
+  current_score
 end
 
 RSpec.describe "scorign a game of greed" do
