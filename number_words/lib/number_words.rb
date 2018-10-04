@@ -28,7 +28,7 @@ def number_words(number)
     string += "#{words[(number / 10) * 10]}"
 
     if number % 10 != 0
-      string += " #{words[number % 10]}"
+      string += " #{number_words(number % 10)}"
     end
   else
     string += words[number]
