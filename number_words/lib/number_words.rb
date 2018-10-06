@@ -1,5 +1,7 @@
-def number_words(number)
-  tokens = {
+class NumberWords
+  attr_reader :number
+
+  TOKENS = {
     1 => "one",
     2 => "two",
     3 => "three",
@@ -35,45 +37,77 @@ def number_words(number)
     :comma => ",",
   }
 
-  limits = [1000000000, 1000000, 1000]
+  CHUNKS = [1000000000, 1000000, 1000, 100]
 
-  string = ""
+  private_constant :TOKENS, :CHUNKS
 
-  limits.each do | limit |
-    if number >= limit
-      string += "#{number_words(number / limit)} #{tokens[limit]}"
+  def initialize(number)
+    @number = number
+  end
 
-      if number % limit != 0
-        if (number / (limit / 10)) % 10 != 0
-          string += "#{tokens[:comma]}"
-        else
-          string += " #{tokens[:and]}"
-        end
+  def to_s
+    @number_words ||= to_words number
+  end
 
-        string += " #{number_words(number % limit)}"
-      end
+  private
 
-      break
-    elsif number < limits.last
-      if number >= 100
-        string += "#{number_words(number / 100)} #{tokens[100]}"
+  def has_tail?(number_part, chunk)
+    number_part % chunk != 0
+  end
 
-        if number % 100 != 0
-          string += " #{tokens[:and]} #{number_words(number % 100)}"
-        end
-      elsif number >= 20
-        string += "#{tokens[(number / 10) * 10]}"
-
-        if number % 10 != 0
-          string += " #{number_words(number % 10)}"
-        end
-      else
-        string += tokens[number]
-      end
-
-      break
+  def separator_string(number_part, chunk)
+    if (number_part / (chunk / 10)) % 10 != 0 && number_part >= 1000
+      "#{TOKENS[:comma]} "
+    else
+      " #{TOKENS[:and]} "
     end
   end
 
-  string
+  def chunk_to_words(number_part, chunk)
+    string = "#{to_words(number_part / chunk)} #{TOKENS[chunk]}"
+
+    if has_tail?(number_part, chunk)
+      string += separator_string(number_part, chunk)
+
+      string += "#{to_words(number_part % chunk)}"
+    end
+
+    string
+  end
+
+  def two_digits_to_words(number_part)
+    string = ""
+
+    if number_part >= 20
+      string += "#{TOKENS[(number_part / 10) * 10]}"
+
+      if has_tail?(number_part, 10)
+        string += " #{to_words(number_part % 10)}"
+      end
+    else
+      string += TOKENS[number_part]
+    end
+
+    string
+  end
+
+  def to_words(number_part)
+    string = ""
+
+    CHUNKS.each do | chunk |
+      if number_part >= chunk
+        string += chunk_to_words(number_part, chunk)
+        break
+      elsif number_part < CHUNKS.last
+        string += two_digits_to_words(number_part)
+        break
+      end
+    end
+
+    string
+  end
+end
+
+def number_words(number)
+  (NumberWords.new number).to_s
 end
