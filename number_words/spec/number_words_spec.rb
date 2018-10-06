@@ -223,4 +223,8 @@ RSpec.describe "number_words" do
       expect(number_words 430112603).to eq("four hundred and thirty million, one hundred and twelve thousand, six hundred and three")
     end
   end
+
+  it "returns 'one billion' for 1,000,000,000" do
+    expect(number_words 1000000000).to eq("one billion")
+  end
 end
