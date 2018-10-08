@@ -2,7 +2,7 @@ require 'bottles'
 
 describe "singing 99 bottles of beer" do
 
-  let(:song) { Bottles.new }
+  let(:song) { Bottles.new(99) }
 
   it "can sing a typical verse" do
     expected = <<-VERSE
@@ -13,7 +13,6 @@ VERSE
   end
 
   it "can sing another typical verse" do
-    skip
     expected = <<-VERSE
 3 bottles of beer on the wall, 3 bottles of beer.
 Take one down and pass it around, 2 bottles of beer on the wall.
@@ -22,7 +21,6 @@ VERSE
   end
 
   it "can sing about 2 bottles" do
-    skip
     expected = <<-VERSE
 2 bottles of beer on the wall, 2 bottles of beer.
 Take one down and pass it around, 1 bottle of beer on the wall.
@@ -31,7 +29,6 @@ Take one down and pass it around, 1 bottle of beer on the wall.
   end
 
   it "can sing about 1 bottle" do
-    skip
     expected = <<-VERSE
 1 bottle of beer on the wall, 1 bottle of beer.
 Take it down and pass it around, no more bottles of beer on the wall.
@@ -40,7 +37,6 @@ Take it down and pass it around, no more bottles of beer on the wall.
   end
 
   it "can sing about no more bottles" do
-    skip
     expected = <<-VERSE
 No more bottles of beer on the wall, no more bottles of beer.
 Go to the store and buy some more, 99 bottles of beer on the wall.
@@ -49,7 +45,6 @@ Go to the store and buy some more, 99 bottles of beer on the wall.
   end
 
   it "can string a couple of verses together" do
-    skip
     expected = <<-VERSES
 99 bottles of beer on the wall, 99 bottles of beer.
 Take one down and pass it around, 98 bottles of beer on the wall.
@@ -61,7 +56,6 @@ VERSES
   end
 
   it "can string a few verses together" do
-    skip
     expected = <<-VERSES
 2 bottles of beer on the wall, 2 bottles of beer.
 Take one down and pass it around, 1 bottle of beer on the wall.
@@ -76,7 +70,6 @@ VERSES
   end
 
   it "can sing the whole song" do
-    skip
     expected = <<-SONG
 99 bottles of beer on the wall, 99 bottles of beer.
 Take one down and pass it around, 98 bottles of beer on the wall.
