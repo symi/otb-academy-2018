@@ -9,14 +9,20 @@ class BookStore
     while tallies.length > 0
       unique_books = tallies.length - 1
       case tallies.length
+      when 3
+        temp_price = ((1 * unit_price) + (1 * unit_price) + (1 * unit_price)) * 0.90
+        tallies[unique_books] -= 1
+        tallies[unique_books - 1] -= 1
+        tallies[unique_books - 2] -= 1
+        price += temp_price
       when 2
         temp_price = ((1 * unit_price) + (1 * unit_price)) * 0.95
-        tallies[unique_books] = tallies[unique_books] - 1
-        tallies[unique_books - 1] = tallies[unique_books - 1] - 1
+        tallies[unique_books] -= 1
+        tallies[unique_books - 1] -=  1
         price += temp_price
       when 1
         temp_price = (1 * unit_price) * 1
-        tallies[unique_books] = tallies[unique_books] - 1
+        tallies[unique_books] -= 1
         price += temp_price
       end
 
