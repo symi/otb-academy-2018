@@ -7,22 +7,31 @@ class BookStore
     puts tallies.inspect
 
     while tallies.length > 0
-      unique_books = tallies.length - 1
-      case tallies.length
+      unique_books = tallies.length
+      book_index = unique_books - 1
+
+      case unique_books
+      when 4
+        temp_price = (unique_books * unit_price) * discount(unique_books)
+        tallies[book_index] -= 1
+        tallies[book_index - 1] -= 1
+        tallies[book_index - 2] -= 1
+        tallies[book_index - 3] -= 1
+        price += temp_price
       when 3
-        temp_price = ((1 * unit_price) + (1 * unit_price) + (1 * unit_price)) * 0.90
-        tallies[unique_books] -= 1
-        tallies[unique_books - 1] -= 1
-        tallies[unique_books - 2] -= 1
+        temp_price = (unique_books * unit_price) * discount(unique_books)
+        tallies[book_index] -= 1
+        tallies[book_index - 1] -= 1
+        tallies[book_index - 2] -= 1
         price += temp_price
       when 2
-        temp_price = ((1 * unit_price) + (1 * unit_price)) * 0.95
-        tallies[unique_books] -= 1
-        tallies[unique_books - 1] -=  1
+        temp_price = (unique_books * unit_price) * discount(unique_books)
+        tallies[book_index] -= 1
+        tallies[book_index - 1] -=  1
         price += temp_price
       when 1
-        temp_price = (1 * unit_price) * 1
-        tallies[unique_books] -= 1
+        temp_price = (unique_books * unit_price) * discount(unique_books)
+        tallies[book_index] -= 1
         price += temp_price
       end
 
@@ -31,6 +40,17 @@ class BookStore
     end
 
     price
+  end
+
+  def discount(unique_books)
+    discounts = {
+      1 => 1,
+      2 => 0.95,
+      3 => 0.90,
+      4 => 0.80,
+    }
+
+    discounts[unique_books]
   end
 
   def tally(books)
