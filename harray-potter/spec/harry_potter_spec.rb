@@ -42,6 +42,8 @@ describe "the book store" do
     # [1,2,3,3]
     # [1,2,3] + 3 => 21.6 + 8 = 29.6
     # [1,3] + [2,3] => 30.4
+
+    # [2, 1, 1]
     expect( book_store.price([1, 2, 3, 3]) ).to eq( 29.60 )
     expect( book_store.price([1, 2, 2, 3]) ).to eq( 29.60 )
   end
