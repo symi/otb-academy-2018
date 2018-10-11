@@ -10,30 +10,8 @@ class BookStore
       unique_books = tallies.length
       book_index = unique_books - 1
 
-      case unique_books
-      when 4
-        temp_price = (unique_books * unit_price) * discount(unique_books)
-        tallies[book_index] -= 1
-        tallies[book_index - 1] -= 1
-        tallies[book_index - 2] -= 1
-        tallies[book_index - 3] -= 1
-        price += temp_price
-      when 3
-        temp_price = (unique_books * unit_price) * discount(unique_books)
-        tallies[book_index] -= 1
-        tallies[book_index - 1] -= 1
-        tallies[book_index - 2] -= 1
-        price += temp_price
-      when 2
-        temp_price = (unique_books * unit_price) * discount(unique_books)
-        tallies[book_index] -= 1
-        tallies[book_index - 1] -=  1
-        price += temp_price
-      when 1
-        temp_price = (unique_books * unit_price) * discount(unique_books)
-        tallies[book_index] -= 1
-        price += temp_price
-      end
+      price += (unique_books * unit_price) * discount(unique_books)
+      book_index.downto(0).each { |index| tallies[index] -= 1 }
 
       puts tallies.inspect
       tallies.delete_if { |book| book == 0 }
@@ -48,6 +26,7 @@ class BookStore
       2 => 0.95,
       3 => 0.90,
       4 => 0.80,
+      5 => 0.75,
     }
 
     discounts[unique_books]

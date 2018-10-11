@@ -53,4 +53,24 @@ describe "the book store" do
     expect( book_store.price([1, 2, 2, 1]) ).to eq( 30.40 )
   end
 
+  it "provides 5 same books for 40 euro" do
+    expect( book_store.price([1, 1, 1, 1, 1]) ).to eq( 40.00 )
+  end
+
+  it "provides 5 different books at 25% discount" do
+    expect( book_store.price([7, 4, 9, 1, 2]) ).to eq( 30.00 )
+  end
+
+  it "provides 8 books with different 3 x 2 same books + 2 x 1 unique book at 51.20" do
+    # [1,1,2,2,3,3,4,5]
+    # [1,2,3,4,5] + [1,2,3] => 30 + 21.60 = 51.60
+    # [1,2,3,4] + [1,2,3,5] => 25.60 + 25.60 = 51.20
+
+    # [2, 2, 2, 1, 1]
+
+    # [2, 1, 1]
+    # []
+
+    expect( book_store.price([1, 1, 2, 2, 3, 3, 4, 5]) ).to eq( 51.20 )
+  end
 end
