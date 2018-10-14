@@ -3,8 +3,7 @@ class BookStore
 
   def price(books)
     @books = books
-    tallies = tally.sort.reverse
-    book_sets = BookSets.new(tallies)
+    book_sets = BookSets.new(tally)
     Pricer.new(book_sets).to_f
   end
 
@@ -22,7 +21,7 @@ class BookStore
     attr_reader :tallies, :book_sets
 
     def initialize(tallies)
-      @tallies = tallies
+      @tallies = tallies.sort.reverse
       @book_sets = caluclate_best_sets(get_sets)
     end
 
