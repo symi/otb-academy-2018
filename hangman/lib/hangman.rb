@@ -42,54 +42,48 @@ class Hangman
 end
 
 class IncorrectGuesses
+  attr_reader :guesses
+
   def initialize
     @guesses = []
   end
 
   def add(char)
-    if !@guesses.include?(char)
-      @guesses << char
+    if !guesses.include?(char)
+      guesses << char
     end
   end
 
-  def guesses
-    @guesses
-  end
-
   def guesses_count
-    @guesses.length
+    guesses.length
   end
 end
 
 class WordGenerator
+  attr_reader :words
+
   def initialize(words)
     @words = words
   end
 
   def to_s
-    @words.sample
+    words.sample
   end
 end
 
 class Word
+  attr_reader :letters
+
   def initialize(word_string)
     @letters = word_string.split('').map { |char| Letter.new(char) }
   end
 
-  def letters
-    @letters
-  end
-
   def to_s
-    (@letters.map { |letter| letter.char }).join
+    (letters.map { |letter| letter.char }).join
   end
 
   def progress
-    (@letters.map { |letter| letter.to_s }).join
-  end
-
-  def matched_chars(char)
-    @letters.select { |letter| letter.char == char }
+    (letters.map { |letter| letter.to_s }).join
   end
 
   def contains?(char)
@@ -97,29 +91,25 @@ class Word
   end
 
   def mark_matches(char)
-    matched_chars(char).each { |letter| letter.correct_guess }
+    letters
+      .select { |letter| letter.char == char }
+      .each { |letter| letter.correct_guess }
   end
 end
 
 class Letter
+  attr_reader :char, :display_char
+
   def initialize(char)
     @char = char
-    @correct_guess = false
-  end
-
-  def char
-    @char
+    @display_char = '_'
   end
 
   def correct_guess
-    @correct_guess = true
+    @display_char = char
   end
 
   def to_s
-    if @correct_guess
-      char
-    else
-      '_'
-    end
+    display_char
   end
 end
